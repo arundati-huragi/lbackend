@@ -1,8 +1,6 @@
 1 Setup
 
 //create virtual env
-python -m venv env
-
 python -m venv .venv
 
 //Activate 
