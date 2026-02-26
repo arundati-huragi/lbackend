@@ -7,6 +7,26 @@ import enum
 
 Base = declarative_base()
 
+class CudosTopic(Base):
+    __tablename__ = "cudos_topic"
+
+    topic_id = Column(Integer, primary_key=True, index=True)
+    topic_code = Column(String(10))
+    topic_title = Column(String(500))
+    topic_content = Column(Text)
+    topic_hrs = Column(String(8))
+    num_of_sessions = Column(Float)
+    marks_expt = Column(Float)
+    correlation_with_theory = Column(String(200))
+    conduction_date = Column(Date)
+    actual_delivery_date = Column(Date)
+    academic_batch_id = Column(Integer)
+    semester_id = Column(Integer)
+    course_id = Column(Integer)
+    created_by = Column(Integer)
+    modified_by = Column(Integer)
+    created_date = Column(Date)
+    modified_date = Column(Date)
 
 class Caste(Base):
     __tablename__ = 'caste'
@@ -2308,9 +2328,13 @@ class IEMRoleMenus(Base):
 class IEMSection(Base):
     __tablename__ = 'iems_section'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    section = Column(String(10), nullable=False)
-
+    id = Column(Integer, primary_key=True, index=True)
+    section = Column(String(10))
+    dept_id = Column(Integer)
+    pgm_id = Column(Integer)
+    academic_batch_id = Column(Integer)
+    semester_id = Column(Integer)
+    status = Column(Integer)
 
 class IEMSemester(Base):
     __tablename__ = 'iems_semester'
@@ -4010,3 +4034,19 @@ class StudentPayment(Base):
 
     # Relationship with StudentRoomAllotment
     room_allotment = relationship("StudentRoomAllotment", backref="student_payment")
+
+
+# Bloom Domain Model (placeholder for missing module)
+class BloomDomain(Base):
+    __tablename__ = 'bloom_domain'
+
+    bloom_domain_id = Column(Integer, primary_key=True, autoincrement=True)
+    bloom_domain_name = Column(String(100), nullable=True)
+    bloom_domain_acronym = Column(String(50), nullable=True)
+    bloom_domain_description = Column(String(255), nullable=True)
+    status = Column(Integer, default=1)
+    org_id = Column(Integer, nullable=True)
+    created_by = Column(Integer, nullable=True)
+    create_date = Column(DateTime, nullable=True)
+    modified_by = Column(Integer, nullable=True)
+    modify_date = Column(DateTime, nullable=True)

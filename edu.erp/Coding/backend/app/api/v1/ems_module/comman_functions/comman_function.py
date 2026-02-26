@@ -18,14 +18,13 @@ from .comman_function_schema import AcademicBatchRequest, BatchCycleFilter, Bloo
     ParamRequestModel, DepartmentListReq, ProgramTypeListReq, ResultYearRequest, SectionRequest, SemesterCheckRequest, \
     SemesterRequest, SetApproveRequest, SoftDeleteRequest, StateRequest, StudentProgramRequest, \
     StudentSectionListRequest, ComputeOpenElectiveCIARequest, StudentCourseRequestParams
-from .....db.models import Caste, City, Country, IEMExamEvent, IEMExamHallMaster, IEMExamSession, IEMGrade, \
+from .....db.models import BloomDomain, Caste, City, Country, IEMExamEvent, IEMExamHallMaster, IEMExamSession, IEMGrade, \
     IEMLabCourseBatch, IEMOrgConfigs, IEMOrganisation, IEMParentsOccupationMaster, IEMSAcademicBatch, IEMSBatchCycle, \
     IEMSCIAExamMaster, IEMSCIAStudentCourses, IEMSCIOccasionType, IEMSClassTimings, IEMSCourseType, IEMSCourses, \
     IEMSCrsFaculty, IEMSEventCalenderDetails, IEMSEventStatus, IEMSDepartment, IEMProgramType, IEMProgram, \
     IEMSEventTypeMaster, IEMSProgressionRules, IEMSTemplate, IEMSTtDaysSet, IEMSUserCourseMgmt, IEMSUserRoleMaster, \
     IEMSUserRoles, IEMSUsers, IEMSection, IEMSemTimeTable, IEMSemester, IEMStudents, PhysicallyChallengedDescription, \
     State, StudentCourse
-from ...cudo_module.bloom_domain.model.bloom_domain_model import BloomDomain
 from .....utils.auth_helper import get_current_user
 from .....utils.http_return_helper import returnSuccess, returnException
 from .....core.database import get_db, get_db_pool

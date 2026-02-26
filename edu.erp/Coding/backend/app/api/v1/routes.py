@@ -1,8 +1,17 @@
+
+print("✅ V1 ROUTES LOADED")
 from fastapi import APIRouter
 from ...api.auth import login
-from app.api.v1.cudo_module.curriculum.delivery_method.curriculum_delivery_method import (
-    router as curriculum_delivery_router
-)
+from app.api.v1.topic_management import topic_routes
+
+router = APIRouter()
+
+
+
+
+# from app.api.v1.cudo_module.curriculum.delivery_method.curriculum_delivery_method import (
+#     router as curriculum_delivery_router
+# )
 # from ...api.v1.home import dashboard_info 
 # from ...api.v1.configurations.all_master import all_master
 # from ...api.v1.configurations.usermaster import user_master
@@ -338,73 +347,73 @@ from ...api.v1.ems_module.comman_functions import comman_function
 # from app.api.v1.transport_module.student_route import student_route
 
 #board of studies members
-from app.api.v1.cudo_module.board_of_studies.api.bos_member_api import (
-    router as bos_member_router
-)
+# from app.api.v1.cudo_module.board_of_studies.api.bos_member_api import (
+#     router as bos_member_router
+# )
 
-from app.api.v1.cudo_module.users.api.user_api import (
-    router as user_router
-)
+# from app.api.v1.cudo_module.users.api.user_api import (
+#     router as user_router
+# )
 
-from app.api.v1.cudo_module.bloom_domain.api.bloom_domain_api import (
-    router as bloom_domain_router
-)
-from app.api.v1.cudo_module.delivery_method.api.delivery_method_api import (
-    router as delivery_method_router
-)
-from app.api.v1.cudo_module.program_mode.api.program_mode_api import (
-    router as program_mode_router
-)
+# from app.api.v1.cudo_module.bloom_domain.api.bloom_domain_api import (
+#     router as bloom_domain_router
+# )
+# from app.api.v1.cudo_module.delivery_method.api.delivery_method_api import (
+#     router as delivery_method_router
+# )
+# from app.api.v1.cudo_module.program_mode.api.program_mode_api import (
+#     router as program_mode_router
+# )
 
-# Main API router
-from app.api.v1.cudo_module.map_level_weightage.map_level_weightage import (
-    router as map_level_weightage_router
-)
+# # Main API router
+# from app.api.v1.cudo_module.map_level_weightage.map_level_weightage import (
+#     router as map_level_weightage_router
+# )
 
-# Program Outcome router
-from app.api.v1.cudo_module.program_outcome.api.po_type_api import (
-    router as program_outcome_router
-)
+# # Program Outcome router
+# from app.api.v1.cudo_module.program_outcome.api.po_type_api import (
+#     router as program_outcome_router
+# )
 
-from app.api.v1.cudo_module.generic_program_outcome.generic_po_api import (
-    router as generic_program_outcome_router
-)
+# from app.api.v1.cudo_module.generic_program_outcome.generic_po_api import (
+#     router as generic_program_outcome_router
+# )
 
-from app.api.v1.cudo_module.lab_category.lab_category_api import (
-    router as lab_category_router
-)
+# from app.api.v1.cudo_module.lab_category.lab_category_api import (
+#     router as lab_category_router
+# )
 
 
-from app.api.v1.cudo_module.manage_knowledge_and_attitude_profile.api import (
-    router as manage_knowledge_and_attitude_profile_router
-)
+# from app.api.v1.cudo_module.manage_knowledge_and_attitude_profile.api import (
+#     router as manage_knowledge_and_attitude_profile_router
+# )
 
 
 router = APIRouter()
 
-router.include_router(
-    bloom_domain_router, prefix="/bloom_domain", tags=["Bloom Domain"]
-)
-router.include_router(
-    curriculum_delivery_router,
-    prefix="/curriculum/curriculum_delivery_method",
-    tags=["Curriculum Delivery Method"]
-)
+# router.include_router(
+#     bloom_domain_router, prefix="/bloom_domain", tags=["Bloom Domain"]
+# )
+# router.include_router(
+#     curriculum_delivery_router,
+#     prefix="/curriculum/curriculum_delivery_method",
+#     tags=["Curriculum Delivery Method"]
+# )
 
-router.include_router(
-    user_router, prefix="/user", tags=["User"]
-)
+# router.include_router(
+#     user_router, prefix="/user", tags=["User"]
+# )
 
-router.include_router(
-    manage_knowledge_and_attitude_profile_router, prefix="/manage_knowledge_and_attitude_profile", tags=["Manage Knowledge and Attitude Profile"]
-)
+# router.include_router(
+#     manage_knowledge_and_attitude_profile_router, prefix="/manage_knowledge_and_attitude_profile", tags=["Manage Knowledge and Attitude Profile"]
+# )
 
 ## Below include all modules routes
 
 # Include auth routes
 # router.include_router(login.router, prefix="/auth", tags=["auth"])
 # router.include_router(register.router, prefix="/auth", tags=["auth"])
-# router.include_router(refresh_token.router, prefix="/auth", tags=["auth"])
+#router.include_router(refresh_token.router, prefix="/auth", tags=["auth"])
 
 # Include routes for registartion module
 router.include_router(login.router, prefix="/staff_student_login", tags=["auth"])
@@ -422,6 +431,11 @@ router.include_router(comman_function.router, prefix="/comman_function", tags=["
 # router.include_router(user_access.router, prefix="/user_acccess", tags=["auth"])
 # router.include_router(staff_course_allocation.router, prefix="/user_courses", tags=["auth"])
 router.include_router(department.router, prefix="/department", tags=["auth"])
+router.include_router(
+    topic_routes.router,
+    prefix="/topic",
+    tags=["Topic Management"]
+)
 # router.include_router(program.router, prefix="/program", tags=["auth"])
 # router.include_router(program_type.router, prefix="/program_type", tags=["auth"])
 
@@ -519,7 +533,9 @@ router.include_router(department.router, prefix="/department", tags=["auth"])
 # router.include_router(vehicle_schedule.router, prefix="/transport", tags=['transport'])
 
 
+# Include auth routes with both prefixes for compatibility
 router.include_router(login.router, prefix="/staff_student_login", tags=["Login"])
+router.include_router(login.router, prefix="/auth", tags=["Auth"])
 
 # Include routes for dashboard module
 # router.include_router(
@@ -531,13 +547,13 @@ router.include_router(login.router, prefix="/staff_student_login", tags=["Login"
 #     comman_function.router, prefix="/comman_function", tags=["EMS-comman_function"]
 # )
 
-router.include_router(
-    bloom_domain_router, prefix="/bloom_domain", tags=["Bloom Domain"]
-)
+# router.include_router(
+#     bloom_domain_router, prefix="/bloom_domain", tags=["Bloom Domain"]
+# )
 
-router.include_router(
-    program_mode_router, prefix="/program_mode", tags=["Program Mode"]
-)
+# router.include_router(
+#     program_mode_router, prefix="/program_mode", tags=["Program Mode"]
+# )
 
 # Include routes for configuration module
 # router.include_router(
@@ -920,54 +936,54 @@ router.include_router(
 # router.include_router(student_route.static_router)
 
 # include BOARD OF STUDIES (BoS)
-router.include_router(
-    bos_member_router,
-    prefix="/cudos/board-of-studies",
-    tags=["Board Of Studies"]
-)
+# router.include_router(
+#     bos_member_router,
+#     prefix="/cudos/board-of-studies",
+#     tags=["Board Of Studies"]
+# )
 
 # include DELIVERY METHOD
-router.include_router(
-    delivery_method_router,
-    prefix="/cudos/delivery-method",
-    tags=["Delivery Method"]
-)
+# router.include_router(
+#     delivery_method_router,
+#     prefix="/cudos/delivery-method",
+#     tags=["Delivery Method"]
+# )
 
-#include MAP LEVEL WEIGHTAGE
-router.include_router(
-    map_level_weightage_router,
-    prefix="/cudos/map-level-weightage",
-    tags=["Map Level Weightage"]
-)
+# #include MAP LEVEL WEIGHTAGE
+# router.include_router(
+#     map_level_weightage_router,
+#     prefix="/cudos/map-level-weightage",
+#     tags=["Map Level Weightage"]
+# )
 
 # include PROGRAM OUTCOME
-router.include_router(
-    program_outcome_router,
-    prefix="/program_outcome",
-    tags=["Program Outcome"]
-)
+# router.include_router(
+#     program_outcome_router,
+#     prefix="/program_outcome",
+#     tags=["Program Outcome"]
+# )
 
 
-from app.api.v1.cudo_module.knowledge_profile.api.okp_api import router as okp_router
+# from app.api.v1.cudo_module.knowledge_profile.api.okp_api import router as okp_router
 
-router.include_router(
-    okp_router,
-    prefix="/knowledge-profile",
-    tags=["Knowledge Profile"]
-)
+# router.include_router(
+#     okp_router,
+#     prefix="/knowledge-profile",
+#     tags=["Knowledge Profile"]
+# )
 
 
 # include GENERIC PROGRAM OUTCOME
-router.include_router(
-    generic_program_outcome_router,
-    prefix="/cudos/generic-program-outcome",
-    tags=["Generic Program Outcome"]
-)
+# router.include_router(
+#     generic_program_outcome_router,
+#     prefix="/cudos/generic-program-outcome",
+#     tags=["Generic Program Outcome"]
+# )
 
 # include LAB CATEGORY
-router.include_router(
-    lab_category_router,
-    prefix="/cudos/lab-category",
-    tags=["Lab Category"]
-)
+# router.include_router(
+#     lab_category_router,
+#     prefix="/cudos/lab-category",
+#     tags=["Lab Category"]
+# )
 

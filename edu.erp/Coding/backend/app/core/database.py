@@ -11,18 +11,17 @@ dotenv_path = os.path.join(".env")
 load_dotenv(dotenv_path=dotenv_path)
 
 
-DB_USERNAME = os.getenv("DB_USERNAME")
-DB_PASSWORD = os.getenv("DB_PASSWORD")
-DB_HOST = os.getenv("DB_HOST")
-DB_PORT = int(os.getenv("DB_PORT", 3306))
-DB_NAME = os.getenv("DB_NAME")
+DB_USERNAME = os.getenv("DB_USERNAME") or ""
+DB_PASSWORD = os.getenv("DB_PASSWORD") or ""
+DB_HOST = os.getenv("DB_HOST") or ""
+DB_PORT = int(os.getenv("DB_PORT", 3307))
+DB_NAME = os.getenv("DB_NAME") or ""
 
 # URL encode the password to handle special characters like @
 ENCODED_PASSWORD = quote(DB_PASSWORD, safe='')
 
 # Use PyMySQL driver for MariaDB compatibility
-DATABASE_URL = f"mysql+pymysql://{DB_USERNAME}:{ENCODED_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-
+DATABASE_URL =  "mysql+pymysql://root:root@localhost:3307/ionerp_lms_19_02_2026"
 engine = create_engine(DATABASE_URL, echo=False)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

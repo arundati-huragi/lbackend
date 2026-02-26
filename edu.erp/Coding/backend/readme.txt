@@ -1,10 +1,13 @@
-1 Setup
+1 Setup (Windows)
 
 //create virtual env
 python -m venv .venv
 
-//Activate 
-source ./env/bin/activate
+//Activate (Windows CMD)
+.venv\Scripts\activate
+
+//Activate (Windows PowerShell)
+.venv\Scripts\Activate
 
 //ensure latest version
 python -m pip install --upgrade pip
@@ -15,7 +18,35 @@ pip install -r requirements.txt
 
 2 Command to runserver 
 //Activate created venv and run app
-source ./env/bin/activate
+.venv\Scripts\activate
 uvicorn app.main:app --reload
 
 uvicorn app.main:app --reload --host 10.91.0.213 --port 8001
+
+D:\lms-backend\
+cd edu.erp\Coding\backend
+
+for POST/api/v1/topic/import_topic
+Import Topic
+{
+  "topic_code": "T001",
+  "topic_title": "Introduction",
+  "topic_content": "Basic concepts",
+  "academic_batch_id": 1,
+  "semester_id": 1,
+  "course_id": 1,
+  "created_by": 1
+}
+
+for PUT /api/v1/topic/update_topic/{topic_id}
+Update Topic
+topic id=10
+{
+  "topic_code": "T002",
+  "topic_title": "Introduction Updated",
+  "topic_content": "Updated content",
+  "academic_batch_id": 1,
+  "semester_id": 1,
+  "course_id": 1,
+  "created_by": 1
+}
