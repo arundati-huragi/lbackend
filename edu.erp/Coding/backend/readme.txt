@@ -40,7 +40,7 @@ Import Topic
 
 for PUT /api/v1/topic/update_topic/{topic_id}
 Update Topic
-topic id=10
+topic id=14
 {
   "topic_code": "T002",
   "topic_title": "Introduction Updated",
@@ -49,4 +49,42 @@ topic id=10
   "semester_id": 1,
   "course_id": 1,
   "created_by": 1
+}
+
+#2nd task edit topic values used to check
+PUT
+/api/v1/topic/edit_topic_schedule
+Edit Topic Schedule
+Request body
+{
+  "inst_map_id": 3,
+  "conduction_date": "2026-03-07",
+  "actual_delivery_date": "2026-03-07",
+  "marks_expt": 1,
+  "modified_by": 1
+}
+
+POST/api/v1/topic/add_extra_topic
+Add Extra Topic
+
+{
+  "topic_id": 17,
+  "academic_batch_id": 1,
+  "semester_id": 1,
+  "course_id": 1,
+  "section_id": 1,
+  "instructor_id": 1,
+  "topic_hrs": "1",
+  "num_of_sessions": 1,
+  "created_by": 1
+}
+#3rd task
+POST
+/api/v1/material/share_material
+Share material
+{
+  "material_id": 1,
+  "academic_batch_id":1,
+  "section_id": 1,
+"student_usns": ["1RV21CS001","1RV21CS002"]
 }
